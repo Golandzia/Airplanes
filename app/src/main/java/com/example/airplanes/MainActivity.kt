@@ -2,6 +2,8 @@ package com.example.airplanes
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.airplanes.databinding.ActivityMainBinding
@@ -39,5 +41,14 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("SELECTED_ITEM", id.toInt())
             startActivity(intent)
         }
+
+    }
+    fun aboutActivityButton(item: MenuItem){
+        val intent = Intent(this@MainActivity, AboutProgramActivity::class.java)
+        startActivity(intent)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_manu, menu)
+        return true
     }
 }

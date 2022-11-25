@@ -1,7 +1,9 @@
 package com.example.airplanes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
@@ -28,6 +30,9 @@ class AirplanesActivity : AppCompatActivity() {
             numOfSelectedItem = arguments.getInt("SELECTED_ITEM")
         }
 
+        //Этот код нужен для того чтобы AirplaneInfoActivity понял про какой именно самолёт он должен показать информацию
+        var selectedByUserAirplane: MutableList<Int> = mutableListOf()
+
         when(numOfSelectedItem){
             0->{
                 imageViewCompanyLogo.setImageResource(R.drawable.boeing_logo)
@@ -43,6 +48,7 @@ class AirplanesActivity : AppCompatActivity() {
                     airplanesArrayList.add(airplane)
                 }
                 binding.ListViewAirplanes.adapter = ListViewAdapterWithThreImages(this, airplanesArrayList)
+                selectedByUserAirplane.add(0,0)
             }
             1->{
                 imageViewCompanyLogo.setImageResource(R.drawable.airbus_logo)
@@ -58,6 +64,7 @@ class AirplanesActivity : AppCompatActivity() {
                     airplanesArrayList.add(airplane)
                 }
                 binding.ListViewAirplanes.adapter = ListViewAdapterWithThreImages(this, airplanesArrayList)
+                selectedByUserAirplane.add(0,1)
             }
             2->{
                 imageViewCompanyLogo.setImageResource(R.drawable.concorde_logo)
@@ -73,6 +80,7 @@ class AirplanesActivity : AppCompatActivity() {
                     airplanesArrayList.add(airplane)
                 }
                 binding.ListViewAirplanes.adapter = ListViewAdapterWithThreImages(this, airplanesArrayList)
+                selectedByUserAirplane.add(0,2)
             }
             3->{
                 imageViewCompanyLogo.setImageResource(R.drawable.il_logo)
@@ -88,6 +96,7 @@ class AirplanesActivity : AppCompatActivity() {
                     airplanesArrayList.add(airplane)
                 }
                 binding.ListViewAirplanes.adapter = ListViewAdapterWithThreImages(this, airplanesArrayList)
+                selectedByUserAirplane.add(0,3)
             }
             4->{
                 imageViewCompanyLogo.setImageResource(R.drawable.tu_logo)
@@ -103,8 +112,43 @@ class AirplanesActivity : AppCompatActivity() {
                     airplanesArrayList.add(airplane)
                 }
                 binding.ListViewAirplanes.adapter = ListViewAdapterWithThreImages(this, airplanesArrayList)
+                selectedByUserAirplane.add(0,4)
             }
-
+        }
+        val listView: ListView = findViewById(R.id.ListViewAirplanes)
+        listView.setOnItemClickListener{parent, view, position, id ->
+            val intent = Intent(this@AirplanesActivity, AirplaneInfoActivity::class.java)
+            selectedByUserAirplane.add(1, id.toInt())
+            when(selectedByUserAirplane){
+                mutableListOf(0, 0)->{
+                    intent.putExtra("AIRPLANE_NAME", "777-200LR")
+                }
+                mutableListOf(0, 1)->{
+                    intent.putExtra("AIRPLANE_NAME", "747-400")
+                }
+                mutableListOf(1, 0)->{
+                    intent.putExtra("AIRPLANE_NAME", "A380")
+                }
+                mutableListOf(1, 1)->{
+                    intent.putExtra("AIRPLANE_NAME", "A350-900")
+                }
+                mutableListOf(2, 0)->{
+                    intent.putExtra("AIRPLANE_NAME", "Concorde")
+                }
+                mutableListOf(3, 0)->{
+                        intent.putExtra("AIRPLANE_NAME", "96-400M")
+                }
+                mutableListOf(3, 1)->{
+                    intent.putExtra("AIRPLANE_NAME", "114-300")
+                }
+                mutableListOf(4, 0)->{
+                    intent.putExtra("AIRPLANE_NAME", "204-300")
+                }
+                mutableListOf(4, 1)->{
+                    intent.putExtra("AIRPLANE_NAME", "144")
+                }
+            }
+            startActivity(intent)
         }
     }
 }

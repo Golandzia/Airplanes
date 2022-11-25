@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutProgramActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:lineSpacingExtra="8sp"
+        android:paddingRight="20dp"
+        android:text="Программа разработана специально для Учебной Практики Написана, создана и придумана студентом группы ИС-32 МГГТК АГУ Соловьёвым Даниилом Приложение рассказывает про культовые и наиболее известные самолёты пассажирской авиации. От легендарного Конкорда до воздушного исполина Airbus A380. В дальнейшем планируется доработка приложения, добавление новых моделей, улучшение интерфейса, добавление анимаций и тд. К сожалению реализовать всё это за 4 дня было просто невозможно. Но у разработчика есть много идей, и, возможно, когда-нибудь, вы сможете увидеть это приложение в PlayMarket. "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
